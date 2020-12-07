@@ -27,4 +27,34 @@ Explanation: The input array represents the integer 999. 999 + 1 = 1000.
 """
 def plus_one(digits):
     # Your code here
+    '''
+    Input: list of integer digits
+    Output: list of integer digits representing the og number + 1 
 
+    Plan 1: transform it into a single integer
+                - join the list of integers into a single string 
+                - change the single strong into an integer with the `int` function
+            add one to our transformed integer (this takes care of carrying for us)
+            transform the integer back into a list of digits
+
+    Plan 2: Can we re-use the input to do waht we want to do?
+            Can we just act on the input "digits" lists?
+            [1,2,3] + 1  : add 1 to the last element in the list 
+    '''
+
+    #  iterate in reverse 
+    for i in range(len(digits) - 1, -1, -1):
+        #  check if the current digit == 9 
+        if digits[i] != 9:
+            digits[i] += 1
+            # we are done; return our result
+            return digits
+        # otherwise, the current digit is 9 
+        digits[i] = 0
+    # if we reach outside of this for loop, then we got nothing but 9's 
+    #  we need to add a 1 to the front of our list
+    digits.insert(0,1)
+
+    return digits
+
+print(plus_one([9,9]))
