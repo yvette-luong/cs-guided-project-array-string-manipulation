@@ -22,4 +22,44 @@ There is no index that satisfies the conditions in the problem statement.
 """
 def pivot_index(nums):
     # Your code here
+    '''
+    Input: List of integers
+    Output: an int, the pivot index (note that we dont count the value at the pivot)
 
+    Plan 1: Loop through each number 
+            Get the sum of all numbers to this number's left side
+            Get the sum of all numbers to this number's right side
+            If the 2 sumns match, return the index of the current number 
+
+    this plan works, but we perform a lot of redundant summing
+    Because of the fact that we're touching every other number except the current number, for every single number in the list , this is an O(n^2) solution
+
+
+    Plan 2: keep track of the total sum of the list 
+            keep track of the current running sum as we iterate 
+            iterate thorugh our numbers 
+            subtract the current number from the total 
+            check if the new total = running sum 
+                if it does -> return the index of the current number
+    '''
+    # O(n) + O(n) = O(2*n) ~ O(n)time
+
+    total = sum(nums) #in O(n) Time 
+    running = 0
+
+    for i,num in enumerate (nums): #O(n) run through every single nums 
+        # O(1)
+        # subtract num from total 
+        total -= num 
+        # check if total == running 
+        if total == running:
+            # return the index of num 
+            return i 
+
+        running += num 
+
+    return -1
+
+# nums = [1,7,3,6,5,6]
+nums = [1,2,3]
+print(pivot_index(nums))
