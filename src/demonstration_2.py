@@ -53,7 +53,9 @@ def plus_one(digits):
         digits[i] = 0
     # if we reach outside of this for loop, then we got nothing but 9's 
     #  we need to add a 1 to the front of our list
-    digits.insert(0,1)
+    #  can be O(n) in rare cases, but generally doesnt happen enough for us to consider it 
+    #  it is O(n) time complexity
+    digits.insert(0,1) #
 
     return digits
 
